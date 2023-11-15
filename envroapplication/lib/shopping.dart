@@ -2,23 +2,22 @@ import 'package:envroapplication/Dashboard.dart';
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 import 'add_device.dart';
-
-//final GlobalKey<ScaffoldState> _scaffoldKey3 = GlobalKey<ScaffoldState>();
+import 'login_screen.dart';
 
 class Shopping extends StatelessWidget {
+  final GlobalKey<ScaffoldState> _scaffoldKey3 = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<ScaffoldState> _scaffoldKey3 = GlobalKey<ScaffoldState>();
     return Scaffold(
       drawerEnableOpenDragGesture: false,
       key: _scaffoldKey3,
       appBar: AppBar(
         title: const Text("Shopping Screen"),
-        automaticallyImplyLeading: false, // Disable the back button
+        automaticallyImplyLeading: false,
         leading: IconButton(
           icon: const Icon(Icons.menu),
           onPressed: () {
-            // Open the drawer when the menu button is pressed
             if (_scaffoldKey3.currentState != null) {
               _scaffoldKey3.currentState!.openDrawer();
             }
@@ -50,30 +49,64 @@ class Shopping extends StatelessWidget {
               leading: const Icon(Icons.home),
               title: const Text("HomeScreen"),
               onTap: () {
-                // Handle the navigation to Real-time Monitoring
-                Navigator.of(context).pop(); // Close the drawer
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()));
+                Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
               },
             ),
             ListTile(
               leading: const Icon(Icons.monitor),
               title: const Text("Dashboard"),
               onTap: () {
-                // Handle the navigation to Real-time Monitoring
-                Navigator.of(context).pop(); // Close the drawer
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Dashboard()));
+                Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Dashboard()),
+                );
               },
             ),
             ListTile(
               leading: const Icon(Icons.device_hub),
               title: const Text("Add Device"),
               onTap: () {
-                // Handle the navigation to Real-time Monitoring
-                Navigator.of(context).pop(); // Close the drawer
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AddDevice()));
+                Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AddDevice()),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text("Logout"),
+              onTap: () {
+                _scaffoldKey3.currentState?.openEndDrawer();
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const Text("Logout"),
+                      content: const Text("You are logging out"),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                            // Perform logout actions here if needed
+                            Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => LoginScreen(),
+                                  ),
+                                );
+                          },
+                          child: const Text("OK"),
+                        ),
+                      ],
+                    );
+                  },
+                );
               },
             ),
           ],

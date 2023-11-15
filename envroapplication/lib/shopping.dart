@@ -1,11 +1,31 @@
-import 'package:envroapplication/Dashboard.dart';
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 import 'add_device.dart';
 import 'login_screen.dart';
+import 'Dashboard.dart';
+import 'shopping_cart.dart';
 
-class Shopping extends StatelessWidget {
+class Shopping extends StatefulWidget {
+  @override
+  _ShoppingState createState() => _ShoppingState();
+}
+
+class _ShoppingState extends State<Shopping> {
   final GlobalKey<ScaffoldState> _scaffoldKey3 = GlobalKey<ScaffoldState>();
+
+  List<String> itemsInCart = [];
+
+  void addToCart(String item) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('$item added to the cart'),
+        duration: Duration(seconds: 2),
+      ),
+    );
+    setState(() {
+      itemsInCart.add(item);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +43,39 @@ class Shopping extends StatelessWidget {
             }
           },
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: IconButton(
+              icon: Icon(Icons.shopping_cart),
+              onPressed: () {
+                // Open the shopping cart screen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ShoppingCart(itemsInCart),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
         backgroundColor: Colors.green[500],
       ),
-      body: const Center(
-        child: Text("Welcome to the Shopping screen"),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Welcome to the Shopping screen"),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                addToCart("Item 1"); // Add your item details here
+              },
+              child: Text('Add to Cart'),
+            ),
+          ],
+        ),
       ),
       backgroundColor: Colors.green[50],
       drawer: Drawer(
@@ -95,11 +144,11 @@ class Shopping extends StatelessWidget {
                             Navigator.of(context).pop();
                             // Perform logout actions here if needed
                             Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => LoginScreen(),
-                                  ),
-                                );
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginScreen(),
+                              ),
+                            );
                           },
                           child: const Text("OK"),
                         ),
@@ -115,3 +164,4 @@ class Shopping extends StatelessWidget {
     );
   }
 }
+

@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'home_screen.dart';
 import 'add_device.dart';
 
-final GlobalKey<ScaffoldState> _scaffoldKey3 = GlobalKey<ScaffoldState>();
+//final GlobalKey<ScaffoldState> _scaffoldKey3 = GlobalKey<ScaffoldState>();
 
 class Shopping extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> _scaffoldKey3 = GlobalKey<ScaffoldState>();
     return Scaffold(
       drawerEnableOpenDragGesture: false,
       key: _scaffoldKey3,

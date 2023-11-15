@@ -3,11 +3,12 @@ import 'add_device.dart';
 import 'shopping.dart';
 import 'home_screen.dart';
 
-final GlobalKey<ScaffoldState> _scaffoldKey1 = GlobalKey<ScaffoldState>();
+//final GlobalKey<ScaffoldState> _scaffoldKey1 = GlobalKey<ScaffoldState>();
 
 class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> _scaffoldKey1 = GlobalKey<ScaffoldState>();
     return Scaffold(
       drawerEnableOpenDragGesture: false,
       key: _scaffoldKey1,

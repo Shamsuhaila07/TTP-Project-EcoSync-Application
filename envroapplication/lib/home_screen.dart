@@ -5,11 +5,12 @@ import 'package:flutter/material.dart';
 import 'shopping.dart';
 //import 'add_device.dart';
 
-final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+//final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(

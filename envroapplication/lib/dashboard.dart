@@ -3,14 +3,14 @@ import 'add_device.dart';
 import 'shopping.dart';
 import 'home_screen.dart';
 
-final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKey1 = GlobalKey<ScaffoldState>();
 
 class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawerEnableOpenDragGesture: false,
-      key: _scaffoldKey,
+      key: _scaffoldKey1,
       appBar: AppBar(
         title: const Text("Dashboard Screen"),
         automaticallyImplyLeading: false, // Disable the back button
@@ -18,8 +18,8 @@ class Dashboard extends StatelessWidget {
           icon: const Icon(Icons.menu),
           onPressed: () {
             // Open the drawer when the menu button is pressed
-            if (_scaffoldKey.currentState != null) {
-              _scaffoldKey.currentState!.openDrawer();
+            if (_scaffoldKey1.currentState != null) {
+              _scaffoldKey1.currentState!.openDrawer();
             }
           },
         ),

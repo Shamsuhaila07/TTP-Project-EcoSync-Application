@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'home_screen.dart';
 import 'add_device.dart';
 
-final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKey3 = GlobalKey<ScaffoldState>();
 
 class Shopping extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawerEnableOpenDragGesture: false,
-      key: _scaffoldKey,
+      key: _scaffoldKey3,
       appBar: AppBar(
         title: const Text("Shopping Screen"),
         automaticallyImplyLeading: false, // Disable the back button
@@ -18,8 +18,8 @@ class Shopping extends StatelessWidget {
           icon: const Icon(Icons.menu),
           onPressed: () {
             // Open the drawer when the menu button is pressed
-            if (_scaffoldKey.currentState != null) {
-              _scaffoldKey.currentState!.openDrawer();
+            if (_scaffoldKey3.currentState != null) {
+              _scaffoldKey3.currentState!.openDrawer();
             }
           },
         ),

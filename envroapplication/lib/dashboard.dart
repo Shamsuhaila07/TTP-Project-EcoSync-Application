@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'add_device.dart';
 import 'shopping.dart';
 import 'home_screen.dart';
 import 'login_screen.dart';
 
-//final GlobalKey<ScaffoldState> _scaffoldKey1 = GlobalKey<ScaffoldState>();
-
 class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> _scaffoldKey1 = GlobalKey<ScaffoldState>();
+
     return Scaffold(
       drawerEnableOpenDragGesture: false,
       key: _scaffoldKey1,
@@ -26,8 +26,27 @@ class Dashboard extends StatelessWidget {
         ),
         backgroundColor: Colors.green[500],
       ),
-      body: const Center(
-        child: Text("Welcome to the Dashboard Screen"),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height:20),
+            SizedBox(
+              height: 150,
+              child: buildOptimumConditionPieChart(),
+            ),
+            SizedBox(height: 20),
+            Text("Real-time Sensor Data"),
+            SizedBox(height: 20),
+            buildSensorDataCard("Gas Level", "450 ppm"),
+            buildSensorDataCard("Temperature", "25.5°C"),
+            buildSensorDataCard("Soil Moisture", "42%"),
+            SizedBox(height: 20),
+            Text("Status"),
+            SizedBox(height: 20),
+            buildStatusCard("Heating Element", "On"),
+            buildStatusCard("Actuator", "On"),
+          ],
+        ),
       ),
       backgroundColor: Colors.green[50],
       drawer: Drawer(
@@ -41,7 +60,7 @@ class Dashboard extends StatelessWidget {
               child: const Text(
                 "Navigation",
                 style: TextStyle(
-                  color: Colors.white,
+                  //color: Colors white,
                   fontSize: 24,
                 ),
               ),
@@ -96,11 +115,11 @@ class Dashboard extends StatelessWidget {
                             Navigator.of(context).pop();
                             // Perform logout actions here if needed
                             Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => LoginScreen(),
-                                  ),
-                                );
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginScreen(),
+                              ),
+                            );
                           },
                           child: const Text("OK"),
                         ),
@@ -115,4 +134,72 @@ class Dashboard extends StatelessWidget {
       ),
     );
   }
+
+  PieChartData buildOptimumConditionData() {
+    return PieChartData(
+      sectionsSpace: 0,
+      centerSpaceRadius: 40,
+      sections: [
+        PieChartSectionData(
+          title: "Gas Level \n 450ppm",
+          value: 40,
+          color: Colors.blue,
+        ),
+        PieChartSectionData(
+          title: "Temperature \n 25.5C",
+          value: 30,
+          color: Colors.yellow,
+        ),
+        PieChartSectionData(
+          title: "Moisture Level \n 42%",
+          value: 30,
+          color: Colors.red,
+        ),
+      ],
+    );
+  }
+
+  Widget buildOptimumConditionPieChart() {
+    return SizedBox(
+      height: 150,
+      child: PieChart(
+        buildOptimumConditionData(),
+      ),
+    );
+  }
+
+  Widget buildSensorDataCard(String sensorName, String sensorValue) {
+    return Card(
+      elevation: 3,
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(sensorName),
+            Text("$sensorValue"),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildStatusCard(String statusName, String statusValue) {
+    return Card(
+      elevation: 3,
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(statusName),
+            Text("$statusValue"),
+          ],
+        ),
+      ),
+    );
+  }
 }
+

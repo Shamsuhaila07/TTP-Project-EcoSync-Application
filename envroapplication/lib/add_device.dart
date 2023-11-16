@@ -7,6 +7,26 @@ import 'login_screen.dart';
 class AddDevice extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey2 = GlobalKey<ScaffoldState>();
 
+  void _showDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Envro Device has been successfully added"),
+          content: Text("EcoSync01 is added"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,8 +45,29 @@ class AddDevice extends StatelessWidget {
         ),
         backgroundColor: Colors.green[500],
       ),
-      body: const Center(
-        child: Text("Welcome to the Add Device screen"),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Please Scan the QR code to Add Envro Devices"),
+            SizedBox(height: 20),
+            Image.asset(
+              'images/QR.png', // Assuming QR.png is in the images directory
+              width: 100,
+              height: 100,
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                _showDialog(context);
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green, // Set the button color to green
+              ),
+              child: Text('Add Device'),
+            ),
+          ],
+        ),
       ),
       backgroundColor: Colors.green[50],
       drawer: Drawer(
@@ -95,11 +136,11 @@ class AddDevice extends StatelessWidget {
                             Navigator.of(context).pop();
                             // Perform logout actions here if needed
                             Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => LoginScreen(),
-                                  ),
-                                );
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginScreen(),
+                              ),
+                            );
                           },
                           child: const Text("OK"),
                         ),

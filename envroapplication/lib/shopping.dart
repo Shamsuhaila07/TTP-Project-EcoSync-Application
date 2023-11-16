@@ -27,6 +27,28 @@ class _ShoppingState extends State<Shopping> {
     });
   }
 
+  // Dummy list of items for demonstration
+  List<Item> itemList = [
+    Item(
+      name: 'Hay Composting Materials',
+      price: 15.99,
+      rating: 4.5,
+      image: 'images/HayCompost.jpg',
+    ),
+    Item(
+      name: 'Garden Compost',
+      price: 20.49,
+      rating: 4.2,
+      image: 'images/GardenCompost.jpg',
+    ),
+    Item(
+      name: 'Cow Manure Compost',
+      price: 12.99,
+      rating: 4.8,
+      image: 'images/CowManure.jpg',
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,20 +84,32 @@ class _ShoppingState extends State<Shopping> {
         ],
         backgroundColor: Colors.green[500],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Welcome to the Shopping screen"),
-            SizedBox(height: 20),
-            ElevatedButton(
+      body: ListView.builder(
+        itemCount: itemList.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(itemList[index].name),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.asset(
+                  itemList[index].image,
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.cover,
+                ),
+                Text('Price: \$${itemList[index].price}'),
+                Text('Rating: ${itemList[index].rating} stars'),
+              ],
+            ),
+            trailing: ElevatedButton(
               onPressed: () {
-                addToCart("Item 1"); // Add your item details here
+                addToCart(itemList[index].name);
               },
               child: Text('Add to Cart'),
             ),
-          ],
-        ),
+          );
+        },
       ),
       backgroundColor: Colors.green[50],
       drawer: Drawer(
@@ -165,3 +199,11 @@ class _ShoppingState extends State<Shopping> {
   }
 }
 
+class Item {
+  final String name;
+  final double price;
+  final double rating;
+  final String image;
+
+  Item({required this.name, required this.price, required this.rating, required this.image});
+}

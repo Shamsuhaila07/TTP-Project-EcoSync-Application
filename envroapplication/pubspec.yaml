@@ -63,6 +63,10 @@ flutter:
     - images/MediumSizedFarmThumbsUp.jpg
     - images/farm.jpg
     - images/compost.jpg
+    - images/QR.png
+    - images/HayCompost.jpg
+    - images/GardenCompost.jpg
+    - images/CowManure.jpg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

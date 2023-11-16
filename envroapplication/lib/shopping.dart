@@ -13,18 +13,32 @@ class Shopping extends StatefulWidget {
 class _ShoppingState extends State<Shopping> {
   final GlobalKey<ScaffoldState> _scaffoldKey3 = GlobalKey<ScaffoldState>();
 
-  List<String> itemsInCart = [];
+  List<CartItem> itemsInCart = [];
 
-  void addToCart(String item) {
+  void addToCart(Item item) {
+    // Check if the item is already in the cart
+    bool alreadyInCart = false;
+    for (CartItem cartItem in itemsInCart) {
+      if (cartItem.item.name == item.name) {
+        alreadyInCart = true;
+        cartItem.quantity++;
+        break;
+      }
+    }
+
+    // If not in cart, add a new item
+    if (!alreadyInCart) {
+      setState(() {
+        itemsInCart.add(CartItem(item: item, quantity: 1));
+      });
+    }
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('$item added to the cart'),
+        content: Text('${item.name} added to the cart'),
         duration: Duration(seconds: 2),
       ),
     );
-    setState(() {
-      itemsInCart.add(item);
-    });
   }
 
   // Dummy list of items for demonstration
@@ -89,24 +103,27 @@ class _ShoppingState extends State<Shopping> {
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(itemList[index].name),
+            leading: Image.asset(
+              itemList[index].image,
+              width: 100,
+              height: 100,
+              fit: BoxFit.cover,
+            ),
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(
-                  itemList[index].image,
-                  width: 100,
-                  height: 100,
-                  fit: BoxFit.cover,
-                ),
                 Text('Price: \$${itemList[index].price}'),
                 Text('Rating: ${itemList[index].rating} stars'),
+                ElevatedButton(
+                  onPressed: () {
+                    addToCart(itemList[index]);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green, // Set button color to green
+                  ),
+                  child: Text('Add to Cart'),
+                ),
               ],
-            ),
-            trailing: ElevatedButton(
-              onPressed: () {
-                addToCart(itemList[index].name);
-              },
-              child: Text('Add to Cart'),
             ),
           );
         },

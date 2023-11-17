@@ -26,7 +26,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Price: \$${widget.itemsInCart[index].item.price}'),
+                Text('Price: RM${widget.itemsInCart[index].item.price}'),
                 Row(
                   children: [
                     IconButton(

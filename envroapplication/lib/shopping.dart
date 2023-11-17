@@ -44,19 +44,19 @@ class _ShoppingState extends State<Shopping> {
   // Dummy list of items for demonstration
   List<Item> itemList = [
     Item(
-      name: 'Hay Composting Materials',
+      name: 'Hay Composting Materials 2KG',
       price: 15.99,
       rating: 4.5,
       image: 'images/HayCompost.jpg',
     ),
     Item(
-      name: 'Garden Compost',
+      name: 'Garden Compost 2KG',
       price: 20.49,
       rating: 4.2,
       image: 'images/GardenCompost.jpg',
     ),
     Item(
-      name: 'Cow Manure Compost',
+      name: 'Cow Manure Compost 1KG',
       price: 12.99,
       rating: 4.8,
       image: 'images/CowManure.jpg',
@@ -112,7 +112,7 @@ class _ShoppingState extends State<Shopping> {
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Price: \$${itemList[index].price}'),
+                Text('Price: \RM${itemList[index].price}'),
                 Text('Rating: ${itemList[index].rating} stars'),
                 ElevatedButton(
                   onPressed: () {
@@ -138,7 +138,7 @@ class _ShoppingState extends State<Shopping> {
                 color: Colors.green[500],
               ),
               child: const Text(
-                "Navigation",
+                "Welcome \n UserTest101",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,

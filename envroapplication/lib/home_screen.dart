@@ -50,7 +50,7 @@ class HomeScreen extends StatelessWidget {
               ),
               SizedBox(height: 30),
               Text(
-                "Better Solution For Medium-Sized Farm Waste Management",
+                "Solution For Farms Waste Management",
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -84,7 +84,7 @@ class HomeScreen extends StatelessWidget {
                     color: Colors.green[500],
                   ),
                   child: const Text(
-                    "Navigation",
+                    "Welcome \n UserTest101",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,

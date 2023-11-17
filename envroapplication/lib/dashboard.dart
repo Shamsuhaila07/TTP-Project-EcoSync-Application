@@ -58,7 +58,7 @@ class Dashboard extends StatelessWidget {
                 color: Colors.green[500],
               ),
               child: const Text(
-                "Navigation",
+                "Welcome \n UserTest101",
                 style: TextStyle(
                   //color: Colors white,
                   fontSize: 24,

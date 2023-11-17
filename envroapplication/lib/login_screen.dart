@@ -27,6 +27,13 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(height: 20),
+              Image.asset(
+                'images/EnvroLogo.png',
+                width: 100,
+                height: 100,
+              ),
+              SizedBox(height: 20,),
               TextField(
                 controller:
                     usernameController, // Connect the controller to the TextField
